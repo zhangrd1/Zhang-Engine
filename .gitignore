@@ -30,3 +30,11 @@
 *.exe
 *.out
 *.app
+
+# 文件夹
+.vs/
+bin/
+bin-int/
+
+# VS
+*.user
