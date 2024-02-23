@@ -12,9 +12,10 @@ namespace Engine
 		Application() = default;
 		virtual ~Application() = default;
 
-		void run();
+		void Run();
 	};
 
+	// 在客户端中定义
 	std::unique_ptr<Application> CreateApplication();
 }
 

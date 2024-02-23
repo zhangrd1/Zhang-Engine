@@ -1,0 +1,9 @@
+[submodule "Engine/vendor/spdlog"]
+	path = Engine/vendor/spdlog
+	url = git@github.com:gabime/spdlog.git
+[submodule "Engine/vendor/benchmark"]
+	path = Engine/vendor/benchmark
+	url = git@github.com:google/benchmark.git
+[submodule "Engine/vendor/catch2"]
+	path = Engine/vendor/catch2
+	url = git@github.com:catchorg/Catch2.git

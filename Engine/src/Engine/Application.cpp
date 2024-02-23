@@ -4,7 +4,7 @@
 
 namespace Engine
 {
-	void Application::run() {
+	void Application::Run() {
 		while (true) {
 			std::cout << "i am running" << std::endl;
 		}
