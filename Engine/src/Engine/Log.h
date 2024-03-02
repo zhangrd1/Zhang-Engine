@@ -32,7 +32,6 @@ namespace Engine
 #define ENGINE_CORE_ERROR(...)      ::Engine::Log::GetCoreLogger()->error(__VA_ARGS__)
 #define ENGINE_CORE_CRITICAL(...)   ::Engine::Log::GetCoreLogger()->critical(__VA_ARGS__)
 
-
 // 客户端输出信息
 #define ENGINE_TRACE(...)			::Engine::Log::GetClientLogger()->trace(__VA_ARGS__)
 #define ENGINE_INFO(...)			::Engine::Log::GetClientLogger()->info(__VA_ARGS__)
