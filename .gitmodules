@@ -7,3 +7,6 @@
 [submodule "Engine/vendor/catch2"]
 	path = Engine/vendor/catch2
 	url = git@github.com:catchorg/Catch2.git
+[submodule "Engine/vendor/GLFW"]
+	path = Engine/vendor/GLFW
+	url = https://github.com/TheCherno/glfw.git

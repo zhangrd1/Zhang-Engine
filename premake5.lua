@@ -10,6 +10,13 @@ workspace "Engine"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.architecture}"
 
+IncludeDir = {}
+IncludeDir["GLFW"] = "Engine/vendor/GLFW/include" 
+IncludeDir["Glad"] = "Engine/vendor/Glad/include"
+
+include "Engine/vendor/GLFW"
+include "Engine/vendor/Glad"
+
 project "Engine"
 	location "Engine"
 	kind "SharedLib"
@@ -17,6 +24,9 @@ project "Engine"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin/" .. outputdir .. "/%{prj.name}")
+
+	pchheader "enginepch.h"
+	pchsource "Engine/src/enginepch.cpp"
 
 	files
 	{
@@ -27,7 +37,16 @@ project "Engine"
 	includedirs
 	{
 		"%{prj.name}/src",
-		"%{prj.name}/vendor/spdlog/include"
+		"%{prj.name}/vendor/spdlog/include",
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.Glad}"
+	}
+
+	links
+	{
+		"GLFW",
+		"Glad",
+		"opengl32.lib",
 	}
 
 	filter "system:windows"
@@ -39,6 +58,7 @@ project "Engine"
 		{
 			"ENGINE_PLATFORM_WINDOW",
 			"ENGINE_BUILD_DLL",
+			"GLFW_INCLUDE_NONE",
 		}
 
 		postbuildcommands
@@ -48,14 +68,20 @@ project "Engine"
 
 	filter "configurations:Debug"
 		defines "ENGINE_DEBUG"
+		staticruntime "off"
+		runtime "Debug"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "ENGINE_RELEASE"
+		staticruntime "off"
+		runtime "Release"
 		symbols "On"
 
 	filter "configurations:Dist"
 		defines "ENGINE_DIST"
+		staticruntime "off"
+		runtime "Release"
 		symbols "On"
 
 project "Sandbox"
@@ -95,12 +121,19 @@ project "Sandbox"
 
 	filter "configurations:Debug"
 		defines "ENGINE_DEBUG"
+		defines "ENGINE_ENABLE_ASSERT"
+		staticruntime "off"
+		runtime "Debug"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "ENGINE_RELEASE"
+		staticruntime "off"
+		runtime "Release"
 		symbols "On"
 
 	filter "configurations:Dist"
 		defines "ENGINE_DIST"
+		staticruntime "off"
+		runtime "Release"
 		symbols "On"
